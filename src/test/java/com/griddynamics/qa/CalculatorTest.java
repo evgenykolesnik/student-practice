@@ -6,13 +6,12 @@ import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Features;
 import ru.yandex.qatools.allure.annotations.Stories;
 
-import java.lang.reflect.Method;
-
 
 @Features("Calculator testing")
-public class CalculatorTest extends AbstractTest {
+public class CalculatorTest extends BaseTest {
+
     @DataProvider
-    public Object[][] DataProvider(Method m) {
+    public Object[][] dataProvider() {
         return new Object[][]{new Object[]
                 {4, 5},
                 {0, 0},
@@ -20,25 +19,28 @@ public class CalculatorTest extends AbstractTest {
         };
     }
 
-    @Test(dataProvider = "DataProvider", groups = "add")
+    @Test(dataProvider = "dataProvider", groups = "add")
     @Stories("Add test")
     public void addTest(int a, int b) {
         System.out.println("Add test with values (" + a + ", " + b + ")");
-        Assert.assertEquals(a + b, Calculator.add(a, b));
+        Assert.assertEquals(a + b, Calculator.add(a, b), "Incorrect value returned from add method with parameters (" + a + ", " + b + ")");
     }
 
 
-    @Test(dataProvider = "DataProvider", groups = "mul")
+    @Test(dataProvider = "dataProvider", groups = "mul")
     @Stories("Mul test")
     public void mulTest(int a, int b) {
         System.out.println("Mul test with values (" + a + ", " + b + ")");
-        Assert.assertEquals(a * b, Calculator.mul(a, b));
+        Assert.assertEquals(a * b, Calculator.mul(a, b), "Incorrect value returned from mul method with parameters (" + a + ", " + b + ")");
     }
 
     @Test(groups = {"mul", "add"})
     @Stories("Combine test")
     public void combine() {
+        int a = 2;
+        int b = 2;
+        int c = 2;
         System.out.println("Combine test");
-        Assert.assertEquals(2 + 2 * 2, Calculator.mul(Calculator.add(2, 2), 2));
+        Assert.assertEquals(a + b * c, Calculator.mul(Calculator.add(a, b), c), "Incorrect value returned from combine method with parameters (" + a + ", " + b + ", " + c + ")");
     }
 }

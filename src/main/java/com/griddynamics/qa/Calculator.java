@@ -1,11 +1,11 @@
 package com.griddynamics.qa;
 
-public class  Calculator {
-    public static int add(int a, int b) {
+class Calculator {
+    static int add(int a, int b) {
         return a + b;
     }
 
-    public static int mul(int a, int b) {
+    static int mul(int a, int b) {
         return a * b;
     }
 }

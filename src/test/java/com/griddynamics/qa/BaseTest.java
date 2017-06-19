@@ -6,7 +6,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class AbstractTest {
+public class BaseTest {
 
     @BeforeSuite(alwaysRun = true)
     @Step("Before suite")
