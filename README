@@ -1,0 +1,15 @@
+With help of maven properties "groups" and "test.filter" we can configure test suite which should
+be started via maven.
+
+Examples of usage:
+Run group "add": "mvn clean -Dgroups=add verify site"
+Run test class "CalculatorTest": "mvn clean -Dtest.filter=CalculatorTest verify site "
+Run all test classes: "mvn clean -Dtest.filter=* verify site "
+
+Also we can use internal property from maven-failsafe-plugin "it.test" for running specific test
+methods.
+
+Example of usage:
+Run addTest method "Test": "clean -Dit.test=CalculatorTest#addTest verify site"
+
+For more information please visit http://maven.apache.org/surefire/maven-failsafe-plugin/.
