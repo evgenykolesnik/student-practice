@@ -13,4 +13,8 @@ class Calculator {
   static int mul(int a, int b) {
     return a * b;
   }
+
+  static int combine(int a, int b, int c) {
+    return (a + b) * c;
+  }
 }

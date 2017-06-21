@@ -22,28 +22,31 @@ public class CalculatorTest extends BaseTest {
   @Test(dataProvider = "dataProvider", groups = "add")
   @Stories("Add test")
   public void addTest(int a, int b) {
-    System.out.println("Add test with values (" + a + ", " + b + ")");
-    Assert.assertEquals(a + b, Calculator.add(a, b), String.format(
-        "Incorrect value returned from add method with parameters ($d , $d)", a, b));
+    baseTest.logging(String.format(
+        "Add test with parameters (%d , %d)", a, b));
+    Assert.assertEquals(baseTest.addition(a, b), Calculator.add(a, b), String.format(
+        "Incorrect value returned from add method with parameters (%d , %d)", a, b));
   }
 
 
   @Test(dataProvider = "dataProvider", groups = "mul")
   @Stories("Mul test")
   public void mulTest(int a, int b) {
-    System.out.println("Mul test with values (" + a + ", " + b + ")");
-    Assert.assertEquals(a * b, Calculator.mul(a, b), String.format(
-        "Incorrect value returned from mul method with parameters ($d , $d)", a, b));
+    baseTest.logging(String.format(
+        "Mul test with parameters (%d , %d)", a, b));
+    Assert.assertEquals(baseTest.multiply(a, b), Calculator.mul(a, b), String.format(
+        "Incorrect value returned from mul method with parameters (%d , %d)", a, b));
   }
 
   @Test(groups = {"mul", "add"})
   @Stories("Combine test")
-  public void combine() {
+  public void combineTest() {
     int a = 2;
     int b = 2;
     int c = 2;
-    System.out.println("Combine test");
-    Assert.assertEquals(a + b * c, Calculator.mul(Calculator.add(a, b), c),
+    baseTest.logging(String.format(
+        "Combine test with parameters (%d , %d, %d)", a, b, c));
+    Assert.assertEquals(baseTest.combine(a, b, c), Calculator.combine(a, b, c),
         String.format(
             "Incorrect value returned from combine method with parameters (%d , %d, %d)", a, b, c));
   }
